@@ -1,5 +1,7 @@
 package com.ft.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ft.dtos.UserDto;
@@ -70,4 +73,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/names")
+    public ResponseEntity<List<String>> findUsersNames() {
+        return ResponseEntity.ok(userServiceImpl.findUsersNames());
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<String>> findUsersNamesNative(@RequestParam String search) {
+        return ResponseEntity.ok(userServiceImpl.findUsersNamesNative(search));
+    }
 }

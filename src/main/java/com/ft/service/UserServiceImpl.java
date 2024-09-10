@@ -1,5 +1,7 @@
 package com.ft.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ft.dtos.UserDto;
@@ -158,4 +160,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
+    public List<String> findUsersNames() {
+        return userRepository.findUsersNames();
+    }
+    public List<String> findUsersNamesNative(String search) {
+        return userRepository.findUsersNamesNative(search);
+    }
 }

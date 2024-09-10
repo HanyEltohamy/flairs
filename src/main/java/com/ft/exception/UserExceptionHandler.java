@@ -25,4 +25,13 @@ public class UserExceptionHandler {
 				new ErrorResponse(ex.getMessage(),HttpStatus.BAD_REQUEST.value(), "Account NOT FOUND FOR REQUESTED ID", "404"),
 				HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(IllegalStateException.class)
+	@ResponseBody
+	public ResponseEntity<ErrorResponse> handleIllegalStateException(IllegalStateException ex) {
+
+		return new ResponseEntity<ErrorResponse>(
+				new ErrorResponse(ex.getMessage(),HttpStatus.BAD_REQUEST.value(), "User with this email already exists", "400"),
+				HttpStatus.BAD_REQUEST);
+	}
 }
